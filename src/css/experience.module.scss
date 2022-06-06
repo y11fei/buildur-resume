@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=DotGothic16&family=Kdam+Thmor+Pro&family=Questrial&display=swap');
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    padding: 1% 1%;
+    h2 {
+        font-family: 'Questrial', sans-serif;
+        text-align: center;
+    }
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 1% 1%;
+}
+
+.date {
+    width: 570px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.description {
+    width: 615px;
+    display: flex; 
+    flex-direction: row;
+}
+
+
+.miniAdd {
+   margin-left: 35%;
+   margin-top: -15px;
+}
+
+.mainButtons {
+    flex-direction: column;
+    display: flex;
+    gap: 5px;
+    margin-left: 1%;
+}
