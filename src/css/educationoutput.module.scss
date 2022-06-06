@@ -1,0 +1,37 @@
+.education {
+    width: inherit;
+    // background-color: lightblue;
+}
+
+.uni {
+    font-weight: bold;
+}
+.top {
+    margin-top: -2.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.date {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    p {
+        font-style: italic;
+    }
+}
+
+.bottom {
+    margin-top: -2%;
+}

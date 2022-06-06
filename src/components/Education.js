@@ -7,38 +7,12 @@ import {
 } from '../styled/Styled';
 import style from '../css/education.module.scss';
 
-const Education = () => {
-    const [educations, setEducations] = useState([
-        { university: '', city: '', state: '', from: '', to: '', degree: '' },
-    ]);
-    const [addClicks, setAddClicks] = useState(1);
-    const [disabled, setDisabled] = useState(false);
-
-    const handleAddEduc = (e) => {
-        e.preventDefault();
-        setEducations([
-            ...educations,
-            {
-                university: '',
-                city: '',
-                state: '',
-                from: '',
-                to: '',
-                degree: '',
-            },
-        ]);
-        setAddClicks(addClicks + 1);
-
-        if (addClicks >= 2) {
-            setDisabled(true);
-        }
-    };
-
-    const handleRemoveEduc = (index) => {
-        const list = [...educations];
-        list.splice(index, 1);
-        setEducations(list);
-    };
+const Education = ({
+    handleAddEduc,
+    handleRemoveEduc,
+    disabled,
+    educations,
+}) => {
     return (
         <div className={style.container}>
             <h2 className={style.h2}>Education</h2>
@@ -46,8 +20,7 @@ const Education = () => {
                 <div key={index} className={style.uniContainer}>
                     <Input type="text" placeholder="University Name" />
                     <div className={style.location}>
-                        <MiniInput type="text" placeholder="Location City" />
-                        <MiniInput type="text" placeholder="Location State" />
+                        <Input type="text" placeholder="Location" />
                     </div>
                     <div className={style.year}>
                         <MiniInput type="text" placeholder="Starting Year" />
@@ -57,7 +30,11 @@ const Education = () => {
                         />
                     </div>
                     <Input type="text" placeholder="Degree" />
-                    <WideDeleteButton onClick={handleRemoveEduc}>
+                    <WideDeleteButton
+                        onClick={() => {
+                            handleRemoveEduc(index);
+                        }}
+                    >
                         Delete Education
                     </WideDeleteButton>
                 </div>

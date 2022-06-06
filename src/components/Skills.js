@@ -4,26 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import style from '../css/skills.module.scss';
 
-const Skills = () => {
-    const [skills, setSkills] = useState([{ skill: '' }]);
-    const [click, setClicks] = useState(1);
-    const [disabled, setDisabled] = useState(false);
-
-    const handleAddSkill = (e) => {
-        e.preventDefault();
-        setSkills([...skills, { skill: '' }]);
-        setClicks(click + 1);
-
-        if (click > 3) {
-            setDisabled(true);
-        }
-    };
-
-    const handleRemoveSkills = (index) => {
-        const list = [...skills];
-        list.splice(index, 1);
-        setSkills(list);
-    };
+const Skills = ({ skills, handleAddSkill, handleRemoveSkills, maxSkills }) => {
     return (
         <div className={style.main}>
             <h2 className={style.h2}>Skills</h2>
@@ -32,7 +13,9 @@ const Skills = () => {
                     <Input type="text" placeholder="Excel" />
                     <IconButton
                         aria-label="delete"
-                        onClick={handleRemoveSkills}
+                        onClick={() => {
+                            handleRemoveSkills(index);
+                        }}
                     >
                         <DeleteIcon />
                     </IconButton>
@@ -40,7 +23,7 @@ const Skills = () => {
             ))}
             <AddButton
                 onClick={handleAddSkill}
-                disabled={disabled}
+                disabled={maxSkills}
                 className={style.add}
             >
                 Add Skill

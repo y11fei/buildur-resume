@@ -1,0 +1,39 @@
+.top {
+    margin-top: -2.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.company {
+    font-weight: bold;
+}
+
+.location {
+    font-style: italic;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.bottom {
+    margin-top: -5.5%;
+}
+
+.descriptions {
+    margin-left: -0.25in;
+    margin-top: -1.5%;
+}
+
+.experience {
+    margin-top: -3.5%;
+}

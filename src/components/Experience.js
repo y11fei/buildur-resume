@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Input,
     MiniInput,
@@ -10,49 +10,22 @@ import style from '../css/experience.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 
-const Experience = () => {
-    const [experiences, setExperiences] = useState([
-        { experience: '', location: '', from: '', to: '', descriptions: '' },
-    ]);
-    const [descriptions, setDescriptions] = useState([{ description: '' }]);
-
-    const handleAddDesc = (e) => {
-        e.preventDefault();
-        setDescriptions([...descriptions, { description: '' }]);
-    };
-
-    const handleRemoveDesc = (index) => {
-        const lists = [...descriptions];
-        lists.splice(index, 1);
-        setDescriptions(lists);
-    };
-
-    const handleAddExp = (e) => {
-        e.preventDefault();
-        setExperiences([
-            ...experiences,
-            {
-                experience: '',
-                location: '',
-                from: '',
-                to: '',
-                descriptions: '',
-            },
-        ]);
-    };
-
-    const handleRemoveExp = (index) => {
-        const lists = [...experiences];
-        lists.splice(index, 1);
-        setExperiences(lists);
-    };
+const Experience = ({
+    handleAddDesc,
+    handleRemoveDesc,
+    handleAddExp,
+    handleRemoveExp,
+    experiences,
+    descriptions,
+}) => {
     return (
         <div className={style.main}>
             <h2>Experience</h2>
             {experiences.map((experience, index) => (
                 <div key={index} className={style.container}>
+                    <Input type="text" placeholder="Company" />
+                    <Input type="text" placeholder="Location" />
                     <Input type="text" placeholder="Job Title" />
-                    <Input type="text" placeholder="location" />
                     <div className={style.date}>
                         <MiniInput type="text" placeholder="From" />
                         <MiniInput type="text" placeholder="To" />
@@ -63,7 +36,9 @@ const Experience = () => {
                                 <Input type="text" placeholder="Description" />
                                 <IconButton
                                     aria-label="delete"
-                                    onClick={handleRemoveDesc}
+                                    onClick={() => {
+                                        handleRemoveDesc(index);
+                                    }}
                                 >
                                     <DeleteIcon />
                                 </IconButton>
@@ -76,7 +51,7 @@ const Experience = () => {
                     >
                         Add
                     </AddButton>
-                    <WideDeleteButton onClick={handleRemoveExp}>
+                    <WideDeleteButton onClick={() => handleRemoveExp(index)}>
                         Delete Experience
                     </WideDeleteButton>
                 </div>
