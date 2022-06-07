@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, MiniInput, AddButton } from '../styled/Styled';
 import styles from '../css/personal.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
+import { Link } from '@mui/icons-material';
 
 const Personal = ({
     handleAddLink,
@@ -12,6 +13,7 @@ const Personal = ({
     handleName,
     handleNumber,
     handleEmail,
+    handleChangeLink,
 }) => {
     return (
         <div>
@@ -31,7 +33,11 @@ const Personal = ({
                 <Input type="text" placeholder="Email" onChange={handleEmail} />
                 {linksList.map((link, index) => (
                     <div key={index} className={styles.linkContainer}>
-                        <Input type="text" placeholder="Link" />
+                        <Input
+                            type="text"
+                            placeholder="Link"
+                            onChange={(e) => handleChangeLink(e, index)}
+                        />
                         <IconButton
                             aria-label="delete"
                             onClick={() => {

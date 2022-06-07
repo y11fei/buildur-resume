@@ -1,7 +1,7 @@
 import React from 'react';
 import style from '../css/skillsoutput.module.scss';
 
-const SkillsOutput = () => {
+const SkillsOutput = ({ skills }) => {
     return (
         <div className={style.skills}>
             <div className="temp">
@@ -9,8 +9,9 @@ const SkillsOutput = () => {
                 <hr className="solidDash" />
                 <div className={style.bulletpoints}>
                     <ul>
-                        <li>C++</li>
-                        <li>HTML/CSS</li>
+                        {skills?.map((skill, index) => (
+                            <li key={index}>{skill.skill}</li>
+                        ))}
                     </ul>
                 </div>
             </div>

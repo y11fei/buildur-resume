@@ -14,11 +14,19 @@ const Main = () => {
     const [clicks, setClicks] = useState(1);
     const [maxLinks, setMaxLinks] = useState(false);
     const [experiences, setExperiences] = useState([
-        { experience: '', location: '', from: '', to: '', descriptions: '' },
+        {
+            company: '',
+            location: '',
+            title: '',
+            from: '',
+            to: '',
+            descriptions1: '',
+            description2: '',
+            description3: '',
+        },
     ]);
-    const [descriptions, setDescriptions] = useState([{ description: '' }]);
     const [educations, setEducations] = useState([
-        { university: '', city: '', state: '', from: '', to: '', degree: '' },
+        { university: '', location: '', from: '', to: '', degree: '' },
     ]);
     const [addClicks, setAddClicks] = useState(1);
     const [disabled, setDisabled] = useState(false);
@@ -31,7 +39,6 @@ const Main = () => {
 
     const handleName = (e) => {
         setName(e.target.value);
-        console.log(e.target.value);
     };
 
     const handleNumber = (e) => {
@@ -45,9 +52,8 @@ const Main = () => {
         e.preventDefault();
         setLinkslist([...linksList, { link: '' }]);
         setClicks(clicks + 1);
-        console.log(clicks);
 
-        if (clicks >= 2) {
+        if (clicks >= 3) {
             setMaxLinks(true);
         }
     };
@@ -58,18 +64,20 @@ const Main = () => {
         setLinkslist(list);
     };
 
-    const handleAddDesc = (e) => {
-        e.preventDefault();
-        setDescriptions([...descriptions, { description: '' }]);
+    const handleChangeLink = (e, index, link) => {
+        const { value } = e.target;
+        const list = [...linksList];
+        list[index].link = value;
     };
 
-    const handleRemoveDesc = (index) => {
-        const lists = [...descriptions];
-        lists.splice(index, 1);
-        setDescriptions(lists);
+    const handleChangeEduc = (e, index, name) => {
+        const { value } = e.target;
+        const list = [...educations];
+        list[index][name] = value;
+        console.log(educations);
     };
 
-    const handleAddExp = (e) => {
+    const handleAddExp = (e, index) => {
         e.preventDefault();
         setExperiences([
             ...experiences,
@@ -109,6 +117,13 @@ const Main = () => {
         }
     };
 
+    const handleChangeExp = (e, index, name) => {
+        const { value } = e.target;
+        const list = [...experiences];
+        list[index][name] = value;
+        console.log(experiences);
+    };
+
     const handleRemoveEduc = (index) => {
         const list = [...educations];
         list.splice(index, 1);
@@ -131,6 +146,12 @@ const Main = () => {
         setSkills(list);
     };
 
+    const handleChangeSkills = (e, index) => {
+        const { value } = e.target;
+        const list = [...skills];
+        list[index].skill = value;
+    };
+
     return (
         <div className="whole">
             <div className="editor">
@@ -142,33 +163,39 @@ const Main = () => {
                     handleName={handleName}
                     handleNumber={handleNumber}
                     handleEmail={handleEmail}
+                    handleChangeLink={handleChangeLink}
                 />
                 <Education
                     handleAddEduc={handleAddEduc}
                     handleRemoveEduc={handleRemoveEduc}
                     disabled={disabled}
                     educations={educations}
+                    handleChangeEduc={handleChangeEduc}
                 />
                 <Experience
-                    handleAddDesc={handleAddDesc}
-                    handleRemoveDesc={handleRemoveDesc}
                     handleAddExp={handleAddExp}
                     handleRemoveExp={handleRemoveExp}
                     experiences={experiences}
-                    descriptions={descriptions}
+                    handleChangeExp={handleChangeExp}
                 />
                 <Skills
                     skills={skills}
                     handleAddSkill={handleAddSkill}
                     handleRemoveSkills={handleRemoveSkills}
                     maxSkills={maxSkills}
+                    handleChangeSkills={handleChangeSkills}
                 />
             </div>
             <div className="resume">
-                <PersonalOutput />
-                <EducationOutput />
-                <ExperienceOutput />
-                <SkillsOutput />
+                <PersonalOutput
+                    name={name}
+                    number={number}
+                    email={email}
+                    linksList={linksList}
+                />
+                <EducationOutput educations={educations} />
+                <ExperienceOutput experiences={experiences} />
+                <SkillsOutput skills={skills} />
             </div>
         </div>
     );
