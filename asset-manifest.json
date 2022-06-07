@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/buildur-resume/static/css/main.b49580ca.css",
+    "main.js": "/buildur-resume/static/js/main.5218f97f.js",
+    "index.html": "/buildur-resume/index.html",
+    "main.b49580ca.css.map": "/buildur-resume/static/css/main.b49580ca.css.map",
+    "main.5218f97f.js.map": "/buildur-resume/static/js/main.5218f97f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b49580ca.css",
+    "static/js/main.5218f97f.js"
+  ]
+}
