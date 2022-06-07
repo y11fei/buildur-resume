@@ -8,7 +8,6 @@ const Skills = ({
     skills,
     handleAddSkill,
     handleRemoveSkills,
-    maxSkills,
     handleChangeSkills,
 }) => {
     return (
@@ -31,11 +30,7 @@ const Skills = ({
                     </IconButton>
                 </div>
             ))}
-            <AddButton
-                onClick={handleAddSkill}
-                disabled={maxSkills}
-                className={style.add}
-            >
+            <AddButton onClick={handleAddSkill} className={style.add}>
                 Add Skill
             </AddButton>
         </div>

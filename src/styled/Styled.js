@@ -30,6 +30,7 @@ const AddButton = styled.button`
     height: 2.5rem;
     border-radius: 5px;
     font-size: 15px;
+    cursor: pointer;
     &:hover {
         border: 2.5px solid #457b9d;
         color: #457b9d;
@@ -47,6 +48,7 @@ const DeleteButton = styled.button`
     height: 2.5rem;
     border-radius: 5px;
     font-size: 15px;
+    cursor: pointer;
     &:hover {
         border: 2.5px solid #d90429;
         color: #d90429;
@@ -63,6 +65,7 @@ const WideAddButton = styled.button`
     height: 2.5rem;
     border-radius: 5px;
     font-size: 15px;
+    cursor: pointer;
     &:hover {
         background-color: #4361ee;
         font-size: 18px;
@@ -77,6 +80,7 @@ const WideDeleteButton = styled.button`
     height: 2.5rem;
     border-radius: 5px;
     font-size: 15px;
+    cursor: pointer;
     &:hover {
         background-color: #d90429;
         font-size: 18px;

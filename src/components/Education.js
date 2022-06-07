@@ -10,7 +10,6 @@ import style from '../css/education.module.scss';
 const Education = ({
     handleAddEduc,
     handleRemoveEduc,
-    disabled,
     educations,
     handleChangeEduc,
 }) => {
@@ -61,11 +60,7 @@ const Education = ({
                     </WideDeleteButton>
                 </div>
             ))}
-            <WideAddButton
-                className={style.add}
-                onClick={handleAddEduc}
-                disabled={disabled}
-            >
+            <WideAddButton className={style.add} onClick={handleAddEduc}>
                 Add Education
             </WideAddButton>
         </div>

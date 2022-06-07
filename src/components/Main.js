@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Personal from './Personal';
 import Education from './Education';
 import Experience from './Experience';
@@ -7,12 +7,14 @@ import PersonalOutput from './PersonalOutput';
 import EducationOutput from './EducationOutput';
 import ExperienceOutput from './ExperienceOutput';
 import SkillsOutput from './SkillsOutput';
+import Header from './Header';
+import AdfScannerIcon from '@mui/icons-material/AdfScanner';
+import { Button } from '@mui/material';
 import '../css/main.scss';
+import ReactToPrint from 'react-to-print';
 
 const Main = () => {
     const [linksList, setLinkslist] = useState([{ link: '' }]);
-    const [clicks, setClicks] = useState(1);
-    const [maxLinks, setMaxLinks] = useState(false);
     const [experiences, setExperiences] = useState([
         {
             company: '',
@@ -28,14 +30,12 @@ const Main = () => {
     const [educations, setEducations] = useState([
         { university: '', location: '', from: '', to: '', degree: '' },
     ]);
-    const [addClicks, setAddClicks] = useState(1);
-    const [disabled, setDisabled] = useState(false);
+
     const [skills, setSkills] = useState([{ skill: '' }]);
-    const [addSkill, setAddSkill] = useState(1);
-    const [maxSkills, setMaxSkills] = useState(false);
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
     const [email, setEmail] = useState('');
+    const componentRef = useRef();
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -51,11 +51,6 @@ const Main = () => {
     const handleAddLink = (e) => {
         e.preventDefault();
         setLinkslist([...linksList, { link: '' }]);
-        setClicks(clicks + 1);
-
-        if (clicks >= 3) {
-            setMaxLinks(true);
-        }
     };
 
     const handleRemoveLink = (index) => {
@@ -110,11 +105,6 @@ const Main = () => {
                 degree: '',
             },
         ]);
-        setAddClicks(addClicks + 1);
-
-        if (addClicks >= 2) {
-            setDisabled(true);
-        }
     };
 
     const handleChangeExp = (e, index, name) => {
@@ -133,11 +123,6 @@ const Main = () => {
     const handleAddSkill = (e) => {
         e.preventDefault();
         setSkills([...skills, { skill: '' }]);
-        setAddSkill(maxSkills + 1);
-
-        if (addSkill > 3) {
-            setMaxSkills(true);
-        }
     };
 
     const handleRemoveSkills = (index) => {
@@ -153,49 +138,69 @@ const Main = () => {
     };
 
     return (
-        <div className="whole">
-            <div className="editor">
-                <Personal
-                    handleAddLink={handleAddLink}
-                    handleRemoveLink={handleRemoveLink}
-                    disabled={maxLinks}
-                    linksList={linksList}
-                    handleName={handleName}
-                    handleNumber={handleNumber}
-                    handleEmail={handleEmail}
-                    handleChangeLink={handleChangeLink}
-                />
-                <Education
-                    handleAddEduc={handleAddEduc}
-                    handleRemoveEduc={handleRemoveEduc}
-                    disabled={disabled}
-                    educations={educations}
-                    handleChangeEduc={handleChangeEduc}
-                />
-                <Experience
-                    handleAddExp={handleAddExp}
-                    handleRemoveExp={handleRemoveExp}
-                    experiences={experiences}
-                    handleChangeExp={handleChangeExp}
-                />
-                <Skills
-                    skills={skills}
-                    handleAddSkill={handleAddSkill}
-                    handleRemoveSkills={handleRemoveSkills}
-                    maxSkills={maxSkills}
-                    handleChangeSkills={handleChangeSkills}
-                />
-            </div>
-            <div className="resume">
-                <PersonalOutput
-                    name={name}
-                    number={number}
-                    email={email}
-                    linksList={linksList}
-                />
-                <EducationOutput educations={educations} />
-                <ExperienceOutput experiences={experiences} />
-                <SkillsOutput skills={skills} />
+        <div className="container">
+            <Header />
+            <div className="whole">
+                <div className="editor">
+                    <Personal
+                        handleAddLink={handleAddLink}
+                        handleRemoveLink={handleRemoveLink}
+                        handleName={handleName}
+                        handleNumber={handleNumber}
+                        handleEmail={handleEmail}
+                        handleChangeLink={handleChangeLink}
+                        linksList={linksList}
+                    />
+                    <Education
+                        handleAddEduc={handleAddEduc}
+                        handleRemoveEduc={handleRemoveEduc}
+                        educations={educations}
+                        handleChangeEduc={handleChangeEduc}
+                    />
+                    <Experience
+                        handleAddExp={handleAddExp}
+                        handleRemoveExp={handleRemoveExp}
+                        experiences={experiences}
+                        handleChangeExp={handleChangeExp}
+                    />
+                    <Skills
+                        skills={skills}
+                        handleAddSkill={handleAddSkill}
+                        handleRemoveSkills={handleRemoveSkills}
+                        handleChangeSkills={handleChangeSkills}
+                    />
+                </div>
+                <div className="right">
+                    <div className="print">
+                        <ReactToPrint
+                            trigger={() => {
+                                return (
+                                    <Button
+                                        variant="outlined"
+                                        startIcon={<AdfScannerIcon />}
+                                        size="large"
+                                    >
+                                        Print
+                                    </Button>
+                                );
+                            }}
+                            content={() => componentRef.current}
+                            documentTitle="Resume"
+                            pageStyle="print"
+                        />
+                    </div>
+                    <div className="resume" ref={componentRef}>
+                        <PersonalOutput
+                            name={name}
+                            number={number}
+                            email={email}
+                            linksList={linksList}
+                        />
+                        <EducationOutput educations={educations} />
+                        <ExperienceOutput experiences={experiences} />
+                        <SkillsOutput skills={skills} />
+                    </div>
+                </div>
             </div>
         </div>
     );

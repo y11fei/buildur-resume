@@ -4,6 +4,10 @@
     gap: 5rem;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
 .resume {
     display: flex;
     flex-direction: column;
@@ -31,4 +35,14 @@ h4 {
 
 .temp {
     margin: 0.15in 0.5in;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+}
+
+.print {
+    margin-left: 42%;
+    margin-bottom: 1.5rem;
 }

@@ -30,7 +30,7 @@ const ExperienceOutput = ({ experiences }) => {
                         <div className={style.bottom}>
                             <p className={style.role}>{experience.title}</p>
                         </div>
-                        <div className={style.descriptons}>
+                        <div className={style.descriptions}>
                             <ul>
                                 <li>{experience.description1}</li>
                                 <li>{experience.description2}</li>
